@@ -1,6 +1,4 @@
 # JobHub
-
-## OverView
 JobHub is a job listing and application platform where job seekers can browse and apply for jobs, while recruiters can post job openings. It includes user authentication, role-based access, job filtering, and resume uploads.
 
 ## Objective
