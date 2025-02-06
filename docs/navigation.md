@@ -7,6 +7,7 @@
 - **Signup** (`/signup`)
   - **Purpose**: Allows users to register for the platform (with a unified account system).
 
+---
 ## 2. Navigation
 - **Home** (`/`)
   - **Purpose**: Displays smart job and employee recommendations based on user preferences.
