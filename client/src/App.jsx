@@ -5,54 +5,38 @@ import Search from "./pages/Search";
 import Home from "./pages/home";
 import Required from "./pages/Required";
 import Profile from "./pages/Profile";
-import './App.css'; // Import a CSS file for styling
-
-function Dashboard() {
-  return (
-    <nav className="dashboard">
-      <ul>
-        <li><Link to="/Home">Home</Link></li>
-        <li><Link to="/Search">Search</Link></li>
-        <li><Link to="/Required">Required</Link></li>
-        <li><Link to="/Profile">Profile</Link></li>
-      </ul>
-    </nav>
-  );
-}
-
-function AuthenticatedRoutes() {
-  return (
-    <Routes>
-      <Route path="/home" element={<Home />} />
-      <Route path="/search" element={<Search />} />
-      <Route path="/required" element={<Required />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="*" element={<Navigate to="/home" />} />
-    </Routes>
-  );
-}
+import './App.css'; 
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <Router>
-      <div className="app-container">
-        {isLoggedIn && (
-          <div className="sidebar bg-amber-200 align-left m-3 p-10 w-[10vw] round-lg shadow-lg">
-            <Dashboard />
-          </div>
-        )}
-        <div className={`main-content ${isLoggedIn ? 'with-sidebar' : ''}`}>
+      <div className="App text-2xl ">
+        {isLoggedIn ? (
+          <>
+            <nav className="bg-gradient-to-br from-amber-500 to-amber-300 shadow-lg w-screen p-2 flex justify-between items-center">
+              <ul className="flex flex-row justify-start items-center space-x-4">
+                <li className="mx-10 hover:bg-gradient-to-br from-orange-500 to-orange-300 hover:rounded-lg hover:p-2"><Link to="/">Home</Link></li>
+                <li className="mx-10 hover:bg-gradient-to-br from-orange-500 to-orange-300 hover:rounded-lg hover:p-2"><Link to="/search">Search</Link></li>
+                <li className="mx-10 hover:bg-gradient-to-br from-orange-500 to-orange-300 hover:rounded-lg hover:p-2"><Link to="/required">Required</Link></li>
+                <li className="mx-10 hover:bg-gradient-to-br from-orange-500 to-orange-300 hover:rounded-lg hover:p-2"><Link to="/profile">Profile</Link></li>
+              </ul>
+            </nav>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/required" element={<Required />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+          </>
+        ) : (
           <Routes>
-            <Route path="/login" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
-            {isLoggedIn ? (
-              <Route path="*" element={<AuthenticatedRoutes />} />
-            ) : (
-              <Route path="*" element={<Navigate to="/login" />} />
-            )}
+            <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
-        </div>
+        )}
       </div>
     </Router>
   );

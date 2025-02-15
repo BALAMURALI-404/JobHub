@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Login({ onLogin }) {
+export default function Login({ setIsLoggedIn }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -9,8 +9,8 @@ export default function Login({ onLogin }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (email === 'tvk@gmail.com' && password === 'tvk') {
-            onLogin(); // Call the onLogin function to set isLoggedIn to true
-            navigate('/home'); // Navigate to home page
+            setIsLoggedIn(true); // Call setIsLoggedIn to set isLoggedIn to true
+            navigate('/'); // Navigate to home page
         } else {
             alert('Invalid email or password');
         }
@@ -18,9 +18,9 @@ export default function Login({ onLogin }) {
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="Login p-6 bg-gray-500 w-[20vw] h-[40vh] rounded-lg shadow-lg">
+            <div className="Login p-6 bg-gradient-to-r from-gray-600 to-gray-500 w-[20vw] h-[46vh] rounded-lg shadow-lg">
                 <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center">
-                    <h1 className="text-amber-50 mb-4">Login</h1>
+                    <h1 className="text-amber-50 text-3xl   ">Login</h1>
                     <div className="mb-4 w-full">
                         <label className="block mb-1 text-amber-50">Email</label>
                         <input
@@ -42,7 +42,7 @@ export default function Login({ onLogin }) {
                     <button className="bg-blue-400 text-white py-2 px-4 rounded hover:bg-blue-500" type="submit">
                         Submit
                     </button>
-                    <div className="mt-4">
+                    <div className="mt-6 text-lg">
                         <p>
                             Don't have an account? <a href="/signup" className="text-blue-600 hover:underline">Sign up</a>
                         </p>
